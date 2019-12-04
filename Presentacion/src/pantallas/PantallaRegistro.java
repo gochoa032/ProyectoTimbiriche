@@ -68,6 +68,11 @@ public class PantallaRegistro extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(102, 204, 255));
 
         jTextField1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         jButton_Registrar.setFont(new java.awt.Font("Corbel", 1, 14)); // NOI18N
         jButton_Registrar.setText("Registrarse");
@@ -243,6 +248,12 @@ public class PantallaRegistro extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_jButton_RegistrarActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+       if(jTextField1.getText().length() >= 10){
+           evt.consume();
+       }
+    }//GEN-LAST:event_jTextField1KeyTyped
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
