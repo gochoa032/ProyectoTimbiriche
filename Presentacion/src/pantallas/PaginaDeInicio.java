@@ -145,7 +145,7 @@ public class PaginaDeInicio extends javax.swing.JFrame {
         actionPerformed(evt);
     }//GEN-LAST:event_jButton3ActionPerformed
     /**
-     * 
+     * Actualizar pantalla
      */
     public void actualizarPantalla() {
         if (((Jugador) this.jugador).getNombre() != null) {
