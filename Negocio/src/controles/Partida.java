@@ -475,6 +475,9 @@ public class Partida extends PartidaVisitador implements Runnable {
         int indexJugador = this.listaDeJugadores.indexOf((Jugador)mensajeAbandonarPartida.getJugador());
         TableColumn columnaABorrar = tablaPuntuacion.getColumnModel().getColumn(indexJugador);
         this.tablaPuntuacion.removeColumn(columnaABorrar);
+        if(this.listaDeJugadores.get(this.turno).equals(jugadorAbandonar)) {
+            this.actualizarTurnoDeJugador();
+        }
         this.listaDeJugadores.remove((Jugador)jugadorAbandonar);
         this.eliminarJugador((Jugador) jugadorAbandonar);
         notificarObservadores();
