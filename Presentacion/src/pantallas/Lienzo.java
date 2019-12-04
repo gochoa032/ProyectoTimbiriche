@@ -292,7 +292,7 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
         this.partida.asignarNodos(linea);
         this.enviarMovimiento(linea);
         this.partida.actualizarPuntaje(linea);
-        this.dibujarAvatar();
+        this.dibujarJugadorTurno();
         if(this.partida.isTableroLleno()) {
             this.validarGanador();
         }
@@ -303,10 +303,12 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
     /**
      * 
      */
-    public void dibujarAvatar() {
-        this.jLabel_Icono.setIcon(((Jugador)this.listaDeJugadores.get(this.partida.getTurno())).getAvatar().getIcono());
-        Jugador jugadorTurno = (Jugador) this.listaDeJugadores.get(this.partida.getTurno());
-        this.jLabel_Turno.setText(jugadorTurno.getNombre());
+    public void dibujarJugadorTurno() {
+        Jugador jugadorTurno = (Jugador)this.listaDeJugadores.get(this.partida.getTurno());
+        if(jugadorTurno != null) { //cuando 
+            this.jLabel_Icono.setIcon(jugadorTurno.getAvatar().getIcono());
+            this.jLabel_Turno.setText(jugadorTurno.getNombre());
+        }
     }
     
     /**
@@ -375,7 +377,8 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
         if (this.partida.isTableroLleno()) {
             this.validarGanador();
         }
-        dibujarAvatar();
+        dibujarJugadorTurno();
+        
         repaint();
     }
     
@@ -415,7 +418,7 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
         this.partida.agregarObservador(this);
         this.partida.crearNodosDeTablero();
         Thread hilo = new Thread(this.partida);
-        this.dibujarAvatar();
+        this.dibujarJugadorTurno();
         hilo.start();
         repaint();
     }
