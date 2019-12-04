@@ -51,12 +51,12 @@ public class PaginaDeInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel_NombreJugador = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton_RegistrarJugador = new javax.swing.JButton();
         jButton_CrearPartida = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton_UnirseAPartida = new javax.swing.JButton();
+        jLabel_NombreJugador = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,7 +67,6 @@ public class PaginaDeInicio extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(800, 480));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jLabel_NombreJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(2786, 113, 94, 46));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 36)); // NOI18N
@@ -112,6 +111,11 @@ public class PaginaDeInicio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton_UnirseAPartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 150, -1));
+
+        jLabel_NombreJugador.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 24)); // NOI18N
+        jLabel_NombreJugador.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_NombreJugador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabel_NombreJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 150, 200, 50));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesh-1430108_1280.png"))); // NOI18N
         jLabel3.setMaximumSize(new java.awt.Dimension(750, 450));
