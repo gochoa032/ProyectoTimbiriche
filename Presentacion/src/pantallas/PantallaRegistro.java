@@ -245,6 +245,8 @@ public class PantallaRegistro extends javax.swing.JDialog {
             this.setVisible(false);
         } catch (Exception ex) {
             this.mostrarMensaje(ex.getMessage(), "Mensaje", JOptionPane.OK_OPTION);
+            ((Jugador) this.jugador).setAvatar(null);
+            ((Jugador) this.jugador).setNombre(null);
         }
         
     }//GEN-LAST:event_jButton_RegistrarActionPerformed
