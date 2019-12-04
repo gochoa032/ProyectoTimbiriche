@@ -43,13 +43,15 @@ public class FrameJuego extends javax.swing.JFrame implements IObservador {
         this.add(lienzo);
         
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent event) {
-                lienzo.llamarAbandonarPartida();
-                frameJuego.dispose();
-            }
-        });
+        /*
+            this.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent event) {
+                    lienzo.llamarAbandonarPartida();
+                    frameJuego.dispose();
+                }
+            });
+        */
     }    
 
     /**
