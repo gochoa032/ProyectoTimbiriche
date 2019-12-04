@@ -22,6 +22,7 @@ import timbiriche.Linea;
 import timbiriche.Nodo;
 import controles.Partida;
 import controles.IFacadaDeNegocio;
+import timbiriche.ColorJugador;
 
 /**
  *
@@ -98,6 +99,8 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
         jLabel_Turno = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel_Icono = new javax.swing.JLabel();
+        nombreLocal = new javax.swing.JLabel();
+        colorLocal = new javax.swing.JLabel();
 
         jPanel_Puntuacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -131,25 +134,30 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
 
         jLabel_Icono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        nombreLocal.setText("(Nombre)");
+
+        colorLocal.setText("(Color)");
+
         javax.swing.GroupLayout jPanel_PuntuacionLayout = new javax.swing.GroupLayout(jPanel_Puntuacion);
         jPanel_Puntuacion.setLayout(jPanel_PuntuacionLayout);
         jPanel_PuntuacionLayout.setHorizontalGroup(
             jPanel_PuntuacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_PuntuacionLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel_PuntuacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_PuntuacionLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Turno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Icono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel_PuntuacionLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel_PuntuacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel_PuntuacionLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel_Turno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel_Icono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreLocal)
+                            .addComponent(colorLocal))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel_PuntuacionLayout.setVerticalGroup(
@@ -165,9 +173,13 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
                 .addComponent(jLabel_Turno, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel_Icono, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(63, 63, 63))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nombreLocal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(colorLocal)
+                .addGap(31, 31, 31))
         );
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -351,8 +363,19 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
         }
         jTable1.setEnabled(false);
         dtm.setColumnIdentifiers(this.listaDeJugadores.toArray());
-        
         dtm.addRow(puntuacion.toArray());
+        
+        List<String> colores = new ArrayList();
+        for (int i = 0; i < listaDeJugadores.size(); i++) {
+            String nomCol = "";
+            for (ColorJugador c : ColorJugador.values()) {
+                if (c.getColor().equals(((Jugador) listaDeJugadores.get(i)).getColor()))
+                    nomCol = c.name();
+            }
+            colores.add(nomCol.charAt(0) + nomCol.toLowerCase().substring(1, nomCol.length()));
+        }
+        dtm.addRow(colores.toArray());
+        
         jTable1.setModel(dtm);
         this.jPanel_Puntuacion.setSize(350, 650);
         repaint();
@@ -402,7 +425,7 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
         this.listaDeJugadores = listaJugadores;
     }
     
-    public void limpiarLienzo() {
+    public void prepararLienzo() {
         this.listaDeCuadros.clear();
         this.listaDeLineas.clear();
         this.listaDeNodos.clear();
@@ -421,6 +444,14 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
         this.dibujarJugadorTurno();
         hilo.start();
         repaint();
+        this.nombreLocal.setText("Tu nombre: " + ((Jugador) this.jugador).getNombre());
+        
+        String nomCol = "";
+        for (ColorJugador c : ColorJugador.values()) {
+            if (c.getColor().equals(((Jugador) this.jugador).getColor()))
+                nomCol = c.name();
+        }
+        this.colorLocal.setText("Tu color: " + nomCol.charAt(0) + nomCol.toLowerCase().substring(1, nomCol.length()));
     }
 
     public List<Nodo> getListaDeNodos() {
@@ -450,6 +481,7 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel colorLocal;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -458,5 +490,6 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
     private javax.swing.JPanel jPanel_Puntuacion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel nombreLocal;
     // End of variables declaration//GEN-END:variables
 }

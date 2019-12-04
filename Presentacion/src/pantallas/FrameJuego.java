@@ -81,7 +81,7 @@ public class FrameJuego extends javax.swing.JFrame implements IObservador {
     }
 
     public void mostrarPantalla() {
-        lienzo.limpiarLienzo();
+        lienzo.prepararLienzo();
         this.setVisible(true);
     }
 
