@@ -22,10 +22,7 @@ public class MainServidor {
          */
         Servidor servidor = new Servidor();
         servidor.escuchar();
-        
-        /**
-         * 
-         */
+        String prueba = "";
     }
     
 }
