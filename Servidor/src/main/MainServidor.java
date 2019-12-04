@@ -17,7 +17,7 @@ public class MainServidor {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //Servidor
+        //Servidor prueba
         Servidor servidor = new Servidor();
         servidor.escuchar();
     }
