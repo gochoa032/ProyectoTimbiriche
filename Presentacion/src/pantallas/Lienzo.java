@@ -237,10 +237,15 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int opcion = this.mostrarMensajeDeConfirmacion();
         if(opcion == JOptionPane.OK_OPTION) {
-            this.facadaDeNegocio.abandonarPartida(listaDeJugadores, jugador);
-            this.notificarObservadores();
+            this.llamarAbandonarPartida();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+   
+    public void llamarAbandonarPartida() {
+        this.facadaDeNegocio.abandonarPartida(listaDeJugadores, jugador);
+        this.notificarObservadores();
+    }
+    
     /**
      * 
      * @return

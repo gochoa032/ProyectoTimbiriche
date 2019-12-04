@@ -10,6 +10,9 @@ import java.util.List;
 import javax.swing.JPanel;
 import timbiriche.Cliente;
 import controles.IFacadaDeNegocio;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
 
 /**
  *
@@ -38,6 +41,15 @@ public class FrameJuego extends javax.swing.JFrame implements IObservador {
         panelPuntuacion.setLocation(900,25);
         this.add(panelPuntuacion);
         this.add(lienzo);
+        
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent event) {
+                lienzo.llamarAbandonarPartida();
+                frameJuego.dispose();
+            }
+        });
     }    
 
     /**
