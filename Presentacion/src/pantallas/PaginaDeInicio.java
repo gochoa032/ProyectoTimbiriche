@@ -121,7 +121,7 @@ public class PaginaDeInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void actionPerformed(ActionEvent e) {
-        System.out.println(e.getID());
+        //System.out.println(e.getID());
         menu.runCommand(e.getActionCommand());
     }
     

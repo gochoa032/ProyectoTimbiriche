@@ -37,7 +37,7 @@ public class daoMovimiento {
         for (Cliente iteradorJugador : listaJugadores) {
             if (!iteradorJugador.equals(jugador)) {
                 try {
-                    System.out.println("dibujando a "+iteradorJugador.getIpCliente()+":"+iteradorJugador.getPuertoCliente()+" desde "+jugador.getIpCliente()+":"+jugador.getPuertoCliente());
+                    System.out.println("Dibujando a "+iteradorJugador.getIpCliente()+":"+iteradorJugador.getPuertoCliente()+" desde "+jugador.getIpCliente()+":"+jugador.getPuertoCliente());
                     cliente = new Socket(iteradorJugador.getIpCliente(), iteradorJugador.getPuertoCliente());
                     ObjectOutputStream oos = new ObjectOutputStream(cliente.getOutputStream());
                     oos.writeObject(mensaje);

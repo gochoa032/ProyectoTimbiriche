@@ -72,7 +72,7 @@ public abstract class Cliente implements Serializable{
     }
 
     public void setPuertoCliente(int puertoCliente) {
-        System.out.println("el puerto del cliente cambio a " + puertoCliente);
+        //System.out.println("el puerto del cliente cambio a " + puertoCliente);
         this.puertoCliente = puertoCliente;
     }
 
