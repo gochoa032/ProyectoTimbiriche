@@ -287,12 +287,12 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
         this.listaDeLineas.add(linea);
         this.partida.asignarNodos(linea);
         this.enviarMovimiento(linea);
-        repaint();
         this.partida.actualizarPuntaje(linea);
         this.dibujarAvatar();
         if(this.partida.isTableroLleno()) {
             this.validarGanador();
         }
+        repaint();
 //        this.actualizarPuntaje(linea);
     }
     
@@ -372,6 +372,7 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
             this.validarGanador();
         }
         dibujarAvatar();
+        repaint();
     }
     
     public void validarJugadores() {
