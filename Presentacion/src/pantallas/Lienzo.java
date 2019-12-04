@@ -264,14 +264,18 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
     /**
      * 
      */
+    public static boolean acabado = false;
     public void validarGanador() {
-        int puntajeMasAlto = this.partida.obtenerPuntajeMasAlto();
-        int puntosJugador = (Integer) jTable1.getValueAt(0, this.listaDeJugadores.indexOf(this.jugador));
-        
-        if(puntajeMasAlto == puntosJugador) {
-            this.mostrarMensaje("Has ganado", "Fin del juego", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            this.mostrarMensaje("Has perdido", "Fin del juego", JOptionPane.ERROR_MESSAGE);
+        if(!acabado){
+            acabado = true;
+            int puntajeMasAlto = this.partida.obtenerPuntajeMasAlto();
+            int puntosJugador = (Integer) jTable1.getValueAt(0, this.listaDeJugadores.indexOf(this.jugador));
+
+            if(puntajeMasAlto == puntosJugador) {
+                this.mostrarMensaje("Has ganado", "Fin del juego", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                this.mostrarMensaje("Has perdido", "Fin del juego", JOptionPane.ERROR_MESSAGE);
+            }
         }
         this.notificarObservadores();
     }
