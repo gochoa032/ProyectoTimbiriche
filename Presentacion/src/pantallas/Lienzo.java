@@ -202,8 +202,12 @@ public class Lienzo extends javax.swing.JPanel implements IObservador{
                             if (this.validarMovimiento()) {
                                 this.registrarMovimiento();
                             }
+                            else {
+                                repaint(); //volver los puntos negros otra vez
+                            }
                         } catch (Exception ex) {
                             this.mostrarMensaje(ex.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+                            repaint(); //volver los puntos negros otra vez
                         }
                         nodoInicio = null;
                         nodoFinal = null;
