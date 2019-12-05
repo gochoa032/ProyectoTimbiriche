@@ -41,9 +41,9 @@ public class Partida extends PartidaVisitador implements Runnable {
     private List<Cuadro> listaDeCuadros;
     private JTable tablaPuntuacion;
     private int turno;
-    private final int NODOS_DOS_JUGADORES = 5;
-    private final int NODOS_TRES_JUGADORES = 7;
-    private final int NODOS_CUATRO_JUGADORES = 10;
+    private final int NODOS_DOS_JUGADORES = 10;
+    private final int NODOS_TRES_JUGADORES = 20;
+    private final int NODOS_CUATRO_JUGADORES = 40;
     private final int DOS_JUGADORES = 2;
     private final int TRES_JUGADORES = 3;
     private final int CUATRO_JUGADORES = 4;
